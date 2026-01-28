@@ -155,10 +155,9 @@ const App: React.FC = () => {
 
       if (dbError) {
         console.error("Supabase Error:", dbError);
-        // We continue anyway so EmailJS can still try to send if DB fails
       }
 
-      // 2. Send Email via EmailJS with user credentials
+      // 2. Send Email via EmailJS with your credentials
       const emailParams = {
         from_name: formData.name,
         from_email: formData.email,
@@ -167,10 +166,10 @@ const App: React.FC = () => {
       };
 
       await emailjs.send(
-        'service_6xo2ofs', // Service ID provided by user
-        'template_c7jwajg', // Template ID provided by user
+        'service_6xo2ofs', // Your Service ID
+        'template_c7jwajg', // Your Template ID
         emailParams,
-        '78QuZGNxg3OzNbBsu' // Public Key provided by user
+        '78QuZGNxg3OzNbBsu' // Your Public Key
       );
 
       setFormSubmitted(true);
@@ -179,7 +178,7 @@ const App: React.FC = () => {
 
     } catch (error: any) {
       console.error('Submission Error:', error);
-      alert('Error sending message: ' + (error.text || error.message || 'Please check your internet connection or EmailJS setup.'));
+      alert('Error sending message. Please try again later.');
     } finally {
       setIsSubmitting(false);
     }
